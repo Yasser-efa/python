@@ -1,0 +1,73 @@
+import numpy as np
+#    ----------------PROJET: Calcul de moyenne scolaire---------------
+
+def calculateur_moyenne():
+  print("=" * 40)
+  print("CALCULATEUR DE MOYENNE SCOLAIRE")
+  print("=" * 40)
+
+  # 1. Demander les notes
+  notes_input = input("Entrez vos notes (/20) séparés par des virgules (ex: 15, 12, 15): ")
+
+  # 2. Convertir en tableau numpy
+  try:
+    notes_liste = [float(note.strip()) for note in notes_input.split(",")]
+
+  except ValueError:
+    print("Erreur: il faut que ce soit bien des chiffres séparés par des virgules.")
+    return
+  
+  notes_array = np.array(notes_liste)
+  len_ln = len(notes_array)
+  # 3. Calculs
+  moy = np.mean(notes_array)
+  max = np.max(notes_array)
+  min = np.min(notes_array)
+
+    
+  # 4. Mention
+  MENTION_tb = "Très Bien"
+  MENTION_b = "Bien"
+  MENTION_ab = "Assez bien"
+  MENTION_i = "Insuffisant"
+  m = ""
+  if moy>18:
+    m = MENTION_tb
+    print(f"Bravo ! Tu as eu une mention {MENTION_tb}, continues comme ça!")
+  elif moy>16 and moy<18:
+    m = MENTION_b
+    print(f"Pas mal ! Tu as eu une mention {MENTION_b}, à quelque point près de la meilleure mention, donnes toi à fond, tu PEUX avoir la meilleur mention.")
+  elif moy>9 and moy<16:
+    m = MENTION_ab
+    print(f"Tu aurais pu faire beaucoup mieux... Tu as eu une mention, {MENTION_ab}. Tu peux largement faire mieux pelo.")
+  else:
+    m = MENTION_i
+    print(f"Tu me la fais à la mouille ou quoi frangavavo ??? Je vais te le faire à la zob si tu continues comme ça sale zgg. Mention: {MENTION_i}.")
+
+  # 5. Affichage
+  print("     ┌────────────┐")
+  print("     │  RÉSULTAT  │")
+  print("     └────────────┘")
+
+  tab_notes = np.full((len_ln,30), " ")
+  tab_notes[:, 0] = "["
+  tab_notes[:, 21] = "]"
+
+
+  # Faire une barre avec des'▰' pour visualiser la note
+  for i in range(len_ln):
+    round = np.round(notes_array[i])
+    int_round = int(round) + 1
+    tab_notes[i, 1:int_round] = '▰'
+    n_sur20 = f" {notes_array[i]}/20"
+    # Écrire caractère par caractère
+    for j, caractere in enumerate(n_sur20):
+        tab_notes[i, 22 + j] = caractere
+  
+
+
+  for ligne in tab_notes:
+    print(''.join(ligne))
+  print()
+  print(f"Rappel de la mention: {m}")
+calculateur_moyenne()
