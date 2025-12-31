@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('emotionNLP/twitter_training.csv', header=None)
+df = pd.read_csv('pytorch/emotionNLP_data/twitter_training.csv', header=None)
 df.columns = ['id', 'entity', 'sentiment', 'text']
 df = df[df['sentiment'] != 'Irrelevant']
 
