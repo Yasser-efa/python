@@ -51,4 +51,3 @@ sentiments_tensor = torch.tensor(sentiments)
 
 dataset = TensorDataset(sequences_tensor, sentiments_tensor)
 dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
-print("test")
