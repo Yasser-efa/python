@@ -32,10 +32,8 @@ def pad_sequence(sequence, max_len):
     remaining_0 = max_len - len(sequence)
     sequence.extend([0]*remaining_0)
   elif len(sequence) > max_len:
-    zeros_to_remove = len(sequence) - max_len
     sequence = sequence[:max_len]
   return sequence
 
-print(pad_sequence([1, 2, 3], 6))        # Trop court → devrait donner [1, 2, 3, 0, 0, 0]
-print(pad_sequence([1, 2, 3, 4, 5], 3))  # Trop long → devrait donner [1, 2, 3]
-print(pad_sequence([1, 2, 3], 3))        # Pile la bonne taille → [1, 2, 3]
+
+df['sequence'] = df['sequence'].apply(lambda x: pad_sequence(x, 50))
