@@ -82,9 +82,9 @@ for epoch in range(2, 5):
     test(model, test_loader)
 
 # Sauvegarder
-# torch.save(model.state_dict(), 'mnist_cnn.pth')
-# print("Modèle sauvegardé !")
+torch.save(model.state_dict(), 'mnist_cnn.pth')
+print("Modèle sauvegardé !")
 
 # Pour le recharger plus tard :
-model = MNISTNet()
-model.load_state_dict(torch.load('mnist_cnn.pth'))
+# model = MNISTNet()
+# model.load_state_dict(torch.load('mnist_cnn.pth'))
