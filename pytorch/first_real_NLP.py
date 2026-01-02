@@ -82,7 +82,7 @@ elif args.test_self_lstm:
   print("Vocabulaire chargé")
 
 else:
-    print("--train / --test / --test_self \n or \n --train_lstm / --test_lstm / --test_self_lstm")
+    print(" --train / --test / --test_self \n or \n --train_lstm / --test_lstm / --test_self_lstm")
     exit()
 
 # === PREPROCESSING (avec le bon word_to_idx) ===
@@ -237,7 +237,7 @@ if args.test_self:
 
 if args.train_lstm:
     print("Entraînement du modèle")
-    train(model_lstm, dataloader_df, criterion, optimizer_lstm, epochs=1)
+    train(model_lstm, dataloader_df, criterion, optimizer_lstm, epochs=52)
     torch.save(model_lstm.state_dict(), MODEL_PATH_LSTM)
     print("Modèle sauvegardé")
 
