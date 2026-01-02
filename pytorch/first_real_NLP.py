@@ -15,6 +15,7 @@ VOCAB_PATH = "pytorch/emotionNLP_data/word_to_idx.json"
 parser = argparse.ArgumentParser(description="First NLP Trainer / Tester")
 parser.add_argument("--train", action="store_true", help="Entraîner le modèle")
 parser.add_argument("--test", action="store_true", help="Tester le modèle")
+parser.add_argument("--test_self", action="store_true", help="Tester le modèle avec tes propres phrases")
 args = parser.parse_args()
 
 # === CHARGEMENT DES DONNÉES ===
@@ -44,8 +45,13 @@ elif args.test:
         word_to_idx = json.load(f)
     print("Vocabulaire chargé")
 
+elif args.test_self:
+  with open(VOCAB_PATH, 'r') as f:
+    word_to_idx = json.load(f)
+  print("Vocabulaire chargé")
+
 else:
-    print(r"Utilise py pytorch\first_real_NLP.py --train ou py pytorch\first_real_NLP.py --test")
+    print("--train / --test / --test_self")
     exit()
 
 # === PREPROCESSING (avec le bon word_to_idx) ===
@@ -124,6 +130,24 @@ def test(model, dataloader):
     accuracy = 100. * correct / len(dataloader.dataset)
     print(f'Précision: {correct}/{len(dataloader.dataset)} ({accuracy:.2f}%)')
 
+# === FONCTION TEST SUR MES PHRASES ===
+def test_self(model, sentence):
+  model.eval()
+  sentence = text_to_sequence(sentence, word_to_idx)
+  sentence = pad_sequence(sentence, 50)
+  sentence = torch.tensor(sentence).unsqueeze(0)
+  with torch.no_grad():
+    output = model(sentence)   
+    pred = output.argmax(dim=1)
+  if pred == 0:
+    pred = "Positive"
+  elif pred == 1:
+    pred = "Negative"
+  else:
+    pred = "Neutral"
+  print(f"Prédiction de l'ia: {pred}")
+
+
 # === EXÉCUTION ===
 if args.train:
     print("Entraînement du modèle")
@@ -132,9 +156,18 @@ if args.train:
     print("Modèle sauvegardé")
 
 if args.test:
-    if not os.path.exists(MODEL_PATH):
-        print("Aucun modèle sauvegardé trouvé")
-    else:
-        print("Chargement du modèle")
-        model.load_state_dict(torch.load(MODEL_PATH))
-        test(model, dataloader_tv)
+  if not os.path.exists(MODEL_PATH):
+    print("Aucun modèle sauvegardé trouvé")
+  else:
+    print("Chargement du modèle")
+    model.load_state_dict(torch.load(MODEL_PATH))
+    test(model, dataloader_tv)
+
+if args.test_self:
+  if not os.path.exists(MODEL_PATH):
+    print("Aucun modèle sauvegardé trouvé")
+  else:
+    print("Chargement du modèle")
+    model.load_state_dict(torch.load(MODEL_PATH))
+    sentence = input("Veuillez entrer une phrase svp: ")
+    test_self(model, sentence)
