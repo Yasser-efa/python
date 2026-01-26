@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramètres - LeetCode Chess Unlocker</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>♟️ LeetCode Chess Unlocker</h1>
+      <p class="subtitle">Paramètres de l'extension</p>
+    </header>
+
+    <main>
+      <!-- Nombre de problèmes requis -->
+      <section class="setting-group">
+        <h2>🎯 Objectif quotidien</h2>
+        <div class="setting-item">
+          <label for="requiredCount">Nombre de problèmes à résoudre</label>
+          <input type="number" id="requiredCount" min="1" max="10" value="1">
+        </div>
+      </section>
+
+      <!-- Difficulté minimale -->
+      <section class="setting-group">
+        <h2>📊 Difficulté minimale</h2>
+        <div class="setting-item">
+          <label for="minDifficulty">Niveau minimum accepté</label>
+          <select id="minDifficulty">
+            <option value="easy">Easy (Facile)</option>
+            <option value="medium">Medium (Moyen)</option>
+            <option value="hard">Hard (Difficile)</option>
+          </select>
+        </div>
+        <p class="setting-hint">Les problèmes en dessous de ce niveau ne seront pas comptés.</p>
+      </section>
+
+      <!-- Sites bloqués -->
+      <section class="setting-group">
+        <h2>🚫 Sites bloqués</h2>
+        <div class="setting-item checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="blockChess" checked>
+            <span>chess.com</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="blockLichess" checked>
+            <span>lichess.org</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Heure de reset -->
+      <section class="setting-group">
+        <h2>🕐 Heure de réinitialisation</h2>
+        <div class="setting-item">
+          <label for="resetHour">Réinitialiser le compteur à</label>
+          <select id="resetHour">
+            <option value="0">00:00 (Minuit)</option>
+            <option value="4">04:00</option>
+            <option value="5">05:00</option>
+            <option value="6">06:00</option>
+            <option value="7">07:00</option>
+            <option value="8">08:00</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Mode weekend -->
+      <section class="setting-group">
+        <h2>🏖️ Mode weekend</h2>
+        <div class="setting-item">
+          <label class="checkbox-label">
+            <input type="checkbox" id="weekendMode">
+            <span>Désactiver le blocage le weekend</span>
+          </label>
+        </div>
+        <p class="setting-hint">Le samedi et dimanche, les sites ne seront pas bloqués.</p>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn-primary" id="saveBtn">💾 Sauvegarder</button>
+        <button class="btn-secondary" id="resetBtn">🔄 Réinitialiser</button>
+      </div>
+
+      <!-- Statut de sauvegarde -->
+      <div class="save-status" id="saveStatus"></div>
+    </main>
+
+    <footer>
+      <p>Version 1.0.0 • Made with ❤️ for productivity</p>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

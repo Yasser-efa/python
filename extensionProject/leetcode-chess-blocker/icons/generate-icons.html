@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Générateur d'icônes</title>
+</head>
+<body>
+  <h1>Générateur d'icônes LeetCode Chess Unlocker</h1>
+  <p>Cliquez sur chaque bouton pour télécharger les icônes.</p>
+
+  <canvas id="canvas16" width="16" height="16"></canvas>
+  <canvas id="canvas48" width="48" height="48"></canvas>
+  <canvas id="canvas128" width="128" height="128"></canvas>
+
+  <br><br>
+  <button onclick="downloadIcon(16)">Télécharger 16x16</button>
+  <button onclick="downloadIcon(48)">Télécharger 48x48</button>
+  <button onclick="downloadIcon(128)">Télécharger 128x128</button>
+
+  <script>
+    function drawIcon(ctx, size) {
+      const scale = size / 128;
+
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#f97316');
+      gradient.addColorStop(1, '#ea580c');
+
+      // Circle background
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/2 - 2*scale, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Chess knight symbol (simplified)
+      ctx.fillStyle = 'white';
+      ctx.font = `bold ${size * 0.55}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('♞', size/2, size/2 + 2*scale);
+
+      // Code brackets
+      ctx.font = `bold ${size * 0.25}px Arial`;
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.fillText('< >', size/2, size * 0.85);
+    }
+
+    // Draw on all canvases
+    [16, 48, 128].forEach(size => {
+      const canvas = document.getElementById('canvas' + size);
+      const ctx = canvas.getContext('2d');
+      drawIcon(ctx, size);
+    });
+
+    function downloadIcon(size) {
+      const canvas = document.getElementById('canvas' + size);
+      const link = document.createElement('a');
+      link.download = `icon-${size}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>

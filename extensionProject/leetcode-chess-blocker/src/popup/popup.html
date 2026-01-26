@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeetCode Chess Unlocker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>♟️ Chess Unlocker</h1>
+    </header>
+
+    <main>
+      <!-- Statut actuel -->
+      <div class="status-card" id="statusCard">
+        <div class="status-icon" id="statusIcon">⏳</div>
+        <div class="status-info">
+          <div class="status-label" id="statusLabel">Chargement...</div>
+          <div class="status-detail" id="statusDetail"></div>
+        </div>
+      </div>
+
+      <!-- Crédits disponibles -->
+      <div class="credits-section">
+        <div class="credits-display">
+          <span class="credits-number" id="creditsCount">0</span>
+          <span class="credits-label">crédit<span id="creditPlural">s</span> disponible<span id="creditPlural2">s</span></span>
+        </div>
+        <div class="credits-subtitle">1 problème LeetCode = 1 partie de chess</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-section">
+        <div class="stat">
+          <span class="stat-value" id="totalSolved">0</span>
+          <span class="stat-label">Problèmes résolus</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="totalGames">0</span>
+          <span class="stat-label">Parties jouées</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <a href="https://leetcode.com/problemset/" class="btn-primary" target="_blank">
+          🧠 Résoudre un problème
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <a href="#" id="optionsLink" class="options-link">⚙️ Paramètres</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

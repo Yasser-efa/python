@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site bloqué - LeetCode d'abord!</title>
+  <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🚫</div>
+
+    <h1>Pas si vite!</h1>
+
+    <p class="message">
+      Tu n'as plus de crédits pour jouer aux échecs.<br>
+      Résous un problème LeetCode pour gagner une partie!
+    </p>
+
+    <div class="status-card">
+      <div class="status-icon">♟️</div>
+      <div class="status-text">
+        <span class="credits-big" id="creditsCount">0</span>
+        <span class="credits-label">crédit disponible</span>
+      </div>
+    </div>
+
+    <div class="motivation">
+      <p>💡 1 problème LeetCode = 1 partie de chess</p>
+    </div>
+
+    <a href="https://leetcode.com/problemset/" class="btn-primary" target="_blank">
+      🧠 Résoudre un problème
+    </a>
+
+    <button class="btn-secondary" id="refreshBtn">
+      🔄 Vérifier mon statut
+    </button>
+  </div>
+
+  <script src="blocked.js"></script>
+</body>
+</html>

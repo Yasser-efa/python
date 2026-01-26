@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Chess Unlocker",
+  "version": "1.0.0",
+  "description": "Bloque chess.com jusqu'à la résolution d'un problème LeetCode quotidien",
+
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "notifications",
+    "alarms"
+  ],
+
+  "host_permissions": [
+    "*://leetcode.com/*",
+    "*://chess.com/*",
+    "*://*.chess.com/*",
+    "*://lichess.org/*",
+    "*://*.lichess.org/*"
+  ],
+
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://leetcode.com/*"],
+      "js": ["src/content/leetcode.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://chess.com/*",
+        "*://*.chess.com/*",
+        "*://lichess.org/*",
+        "*://*.lichess.org/*"
+      ],
+      "js": ["src/content/chess.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["src/blocked/blocked.html", "src/blocked/blocked.css", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
