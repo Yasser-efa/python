@@ -1,3 +1,4 @@
+from torchviz import make_dot
 import json
 import argparse
 import os

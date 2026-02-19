@@ -6,11 +6,11 @@ from train import AudioCNN
 from dataset import CLASSES, N_MELS, SAMPLE_RATE
 
 # === CONFIG ===
-MODEL_PATH = "pytorch/reco_audio/audio_model.pth"
+MODEL_PATH = "reco_audio/cnnFiles/model_data/audio_model.pth"
 DURATION = 1  # secondes
 
 # === CHARGER LE MODÈLE ===
-model = AudioCNN(num_classes=len(CLASSES))
+model = AudioCNN()
 model.load_state_dict(torch.load(MODEL_PATH))
 model.eval()
 print("Modèle chargé !")
